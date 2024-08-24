@@ -1,21 +1,20 @@
 #include <iostream>
 #include "tictactoe.h"
 
-void minmax(){
-    
 
-}
 
-int main(){
+int main() {
+    tic_tac_toe game;
+    // Find the best move for 'X'
+    std::pair<int, int> bestMove1 = game.minimax();
 
-    tic_tac_toe game;  // Create an instance of the TicTacToe class
-    auto best_move = game.get_best_move();
-    std::cout << "Best move: (" << best_move.first << ", " << best_move.second << ")" << std::endl;
-    game.make_move(best_move.first, best_move.second);
+    // does not work properly
+    game.make_move(bestMove1.first, bestMove1.second);
+    std::cout << "After AI's move:\n";
     game.display_board_state();
     
+
     return 0;
-
+    
 }
-
 

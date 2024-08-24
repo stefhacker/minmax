@@ -19,9 +19,10 @@ class tic_tac_toe {
         char check_winner();
         bool draw();
         int evaluate();
+        int maxi();
+        int mini();
         std::pair<int, int> minimax();
-       
-        
+
 };
 
 
