@@ -119,7 +119,7 @@ std::pair<int, int> tic_tac_toe::minimax() {
         }
     }
 
-    std::cout << "AI selects move: (" << bestMove.first << ", " << bestMove.second << ") with value " << bestVal << std::endl;
+    
     return bestMove;
 }
 

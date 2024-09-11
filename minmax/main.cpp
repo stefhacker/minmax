@@ -4,30 +4,57 @@
 
 
 int main() {
+    
+    std::cout << "do you want to start a game ?[Y/n]\n";
+    char yes_no;
+    std::cin >> yes_no;
+    if (yes_no != 'Y') {
+        return 0;
+    }
     tic_tac_toe game;
-    // Find the best move for 'X'
-    std::pair<int, int> bestMove1 = game.minimax();
+    while(!game.draw() && game.check_winner() == ' ') {
+        
+        std::pair ai_move = game.minimax();
+        game.make_move(ai_move.first, ai_move.second);
+        if (game.check_winner() != ' ' || game.draw()) {
+            game.display_board_state();
+            break;  
+        }
+        game.display_board_state();
+        std::cout << "in which row u want to place? (int between 0 and 2)\n";
+        int row;
+        std::cin >> row;
+        std::cout << "in which col u want to place? (int between 0 and 2)\n";
+        int col;
+        std::cin >> col;
+        game.make_move(row, col);
+        if(game.check_winner() != ' ' || game.draw()) {
+                game.display_board_state();
+            	break;  
+        }
+        
+        
+    
+    }
 
-    // does not work properly
-    game.make_move(0, 0); // X
-    game.make_move(0, 1); // O
-    game.make_move(0, 2); // X
-    game.make_move(1, 1); // O
-    game.make_move(2, 0); // X
-    game.make_move(2, 2);
-    std::cout << "Board before AI's move:\n";
-    game.display_board_state();
+    if (game.check_winner() == 'X'){
+        std::cout << "you lost";
+        return 0;
+    }
 
-    // AI's move - expected to make a winning move
-    std::pair<int, int> ai_move = game.minimax();
-    game.make_move(ai_move.first, ai_move.second);
+    if (game.check_winner() == 'O'){
+        std::cout << "you won";
+        return 0;
+    }
+    if(game.draw()){
+        std::cout << "draw";
+        return 0;
+    }
 
-    std::cout << "\nAI selects move: (" << ai_move.first << ", " << ai_move.second << ")\n";
-    std::cout << "Board after AI's move:\n";
-    game.display_board_state();
+    
     
 
-    return 0;
+    
     
 }
 
