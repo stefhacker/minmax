@@ -1,7 +1,7 @@
 #include <vector>
 #include <iostream>
-#include "tictactoe.h"
 #include <algorithm>
+#include "tictactoe.h"
 
 tic_tac_toe::tic_tac_toe() {
     current_player = 'X';
@@ -13,7 +13,7 @@ void tic_tac_toe::make_move(int row, int col) {
         board[row][col] = current_player;
         current_player = (current_player == 'O') ? 'X' : 'O';
     } else {
-        std::cout << "Invalid move\n";
+        std::cout << "Invalid move. Please choose an empty cell within the board.\n";
     }
 }
 
@@ -50,7 +50,7 @@ int tic_tac_toe::evaluate() {
     char winner = check_winner();
     if (winner == 'X') return 1;
     if (winner == 'O') return -1;
-    return 0;  // Draw or no winner
+    return 0;
 }
 
 bool tic_tac_toe::draw() {
